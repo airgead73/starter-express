@@ -1,0 +1,96 @@
+/* Forms
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@use '../abstracts/tools' as *;
+@use '../abstracts/variables/root' as r;
+@use 'sass:color';
+
+label,
+input,
+select,
+textarea {
+  appearance: none;
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+.form {
+  border: 1px solid clr(primary, dark);
+  padding: 30px;
+}
+
+.form__controls {
+  @include row($gap: 12px);
+  flex-wrap: wrap;
+}
+
+#nameMI {
+  max-width: 50px;
+  @include screen(md) {
+    max-width: none;
+  }
+}
+
+.control {
+  position: relative;
+}
+
+.control__label {
+  font-size: .75rem;
+  font-weight: r.$heavy;
+}
+
+.control__field {
+  border: 1px solid clr(primary);
+  line-height: 3;
+  padding: 0 12px;
+}
+
+textarea.control__field {
+  border: 1px solid clr(primary);
+  line-height: 1.25;
+  padding: 12px;
+}
+
+.control__error {
+  position: absolute;
+  top: -2px;
+  right: 0;
+  font-size: .75rem;
+  font-weight: r.$heavy;
+  color: Red;
+}
+
+.control--form {
+  display: flex;
+}
+
+/* toggle error */
+.control__error {
+  display: none;
+}
+
+.control__field[aria-invalid] {
+  border-color: red;
+  & + .control__error {
+    display: block;
+  }
+}
+
+.success {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+  z-index: 1;
+}
+
+.success__container {
+  position: relative;
+  background-color: white;
+  padding: 50px 30px;
+}
+

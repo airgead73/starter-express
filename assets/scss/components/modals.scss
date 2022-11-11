@@ -1,0 +1,66 @@
+/* Modals
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@use '../abstracts/tools' as *;
+@use '../abstracts/variables/root' as r;
+@use 'sass:color';
+
+.modal {
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-color: rgba(0,0,0,.7);
+  z-index: 1;
+}
+
+.modal[data-status="open"] {
+  display: flex;
+}
+
+.modal[data-status="close"] {
+  display: none;
+}
+
+.modal__content {
+  background-color: white;
+  width: 95%;
+  max-width: 600px;
+  padding: 30px;
+  [data-modal="spinner"] & {
+    background-color: transparent;
+    color: white;
+  }
+}
+
+.modal__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.modal__message {
+  text-align: center;
+  [data-modal="spinner"] & {
+    font-weight: r.$heavy;
+    letter-spacing: -.075pt;
+    font-size: r.$size * 5;
+  }
+
+}
+
+.modal__image {
+  display: block;
+  width: 95%;
+  max-width: 300px;
+  margin: {
+    top: 10px;
+    bottom: 10px;
+    left: auto;
+    right: auto;
+  }
+}

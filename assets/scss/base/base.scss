@@ -1,0 +1,23 @@
+/* Base
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@use '../abstracts/tools' as *;
+@use '../abstracts/variables/root' as r;
+
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+}
+
+body {
+  line-height: 1.5;
+  font-family: r.$bodyFont;
+  font-size: .9rem;
+  font-weight: 200;
+}

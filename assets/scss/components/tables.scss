@@ -1,0 +1,23 @@
+/* Tables
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@use '../abstracts/tools' as *;
+@use '../abstracts/variables/root' as r;
+@use 'sass:color';
+
+table {
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid clr(green);
+  padding: 10px;
+}
+
+.dark {
+  background-color: clr(green);
+  color: white;
+  & th {
+    padding: 20px;
+    border-color: clr(green);
+  }
+}

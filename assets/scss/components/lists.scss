@@ -1,0 +1,16 @@
+/* Lists
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.list {
+  margin-bottom: 1rem;
+  list-style-position: outside;
+  padding-left: 1rem;
+  & li {
+    margin-bottom: .5rem;
+  }
+  &--ordered {
+    list-style-type: decimal;
+  }
+  &--unordered {
+    list-style-type: disc;
+  }
+}

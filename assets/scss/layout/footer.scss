@@ -1,0 +1,11 @@
+/* footer */
+@use '../abstracts/tools' as *;
+@use '../abstracts/variables/root' as r;
+
+footer {}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

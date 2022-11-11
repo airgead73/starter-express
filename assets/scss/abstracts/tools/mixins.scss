@@ -1,0 +1,109 @@
+@use 'sass:color';
+@use './functions.scss' as *;
+////////////////////////////
+/// SET FONTFACE
+////////////////////////////
+
+@mixin font-face($name, $file, $style, $weight) {
+  @font-face {
+    font-family: '#{$name}';
+    font-style: $style;
+    font-weight: $weight;
+    src: local('#{$name}'),
+         url('/fonts/#{$file}.woff2') format('woff2'), // Super Modern Browsers
+         url('/fonts/#{$file}.woff') format('woff'), // Modern Browsers
+         url('/fonts/#{$file}.ttf') format('truetype'), // Safari, Android, iOS
+  }
+}
+
+////////////////////////////
+/// SET BG AND TXT COLORS
+////////////////////////////
+@mixin setBG($color) {
+  $textColor: contrastText($color);
+  background-color: $color;
+  color: $textColor; 
+}
+
+
+////////////////////////////
+/// BOX SHADOW
+////////////////////////////
+@mixin box-shadow ($level) {
+
+	@if $level == 1 {
+		box-shadow: 0 0.125em 0.313em rgba(50,50,93,.09), 0 0.063em 0.125em rgba(0,0,0,.07);
+	} @else if $level == 2 {
+    box-shadow: 0 0.250em 0.375em rgba(50,50,93,.09), 0 0.063em 0.188em rgba(0,0,0,.08);
+	} @else if $level == 3 {
+    box-shadow: 0 0.063em 0.313em 0 rgba(0,0,0,.07), 0 0.438em 1.063em 0 rgba(0,0,0,.1);
+	} @else if $level == 4 {
+    box-shadow: 0 0.938em 2.188em rgba(50,50,93,.1), 0 0.313em 0.938em rgba(0,0,0,.07);
+	} @else if $level == 5 {
+    box-shadow: 0 0.938em 2.188em rgba(50,50,93,.15), 0 0.313em 0.938em rgba(0,0,0,.1);
+	}
+
+}
+
+////////////////////////////
+/// MEDIA QUERY
+////////////////////////////
+$media: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  2xl: 1536px,
+  3xl: 1920px
+);
+
+@mixin screen($breakpoint) {
+  @each $breakpoints, $size in $media {
+    @if $breakpoint==$breakpoints {
+      @media screen and (min-width: $size) {
+        @content;
+      }
+    }
+  }
+}
+
+////////////////////////////
+/// CONTAINER
+////////////////////////////
+@mixin container($max) {
+  width: 98%;
+  max-width: $max;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+////////////////////////////
+/// FLAG BORDER
+////////////////////////////
+@mixin flag($color) {
+  border: {
+    width: 4px;
+    style: solid;
+    color: $color;
+  }
+}
+
+////////////////////////////
+/// ROW
+////////////////////////////
+@mixin row($gap: none, $rowGap: none) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  row-gap: $rowGap;
+  @include screen(md) {
+    flex-direction: row;
+  }  
+}
+
+////////////////////////////
+/// COLUMN
+////////////////////////////
+@mixin column() {
+  flex: 1;
+}

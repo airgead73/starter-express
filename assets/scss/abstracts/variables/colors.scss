@@ -1,0 +1,118 @@
+$darkKhaki: #bdb76b;
+$gainsBoro: #dcdcdc;
+$indianRed: #cd5c5c;
+$oliveDrab: #6b8e23;
+$saddleBrown: #8b4513;
+$tomato: #ff6347;
+$fireBrick: #b22222;
+$siena: #a0522d;
+$chocolate: #d2691e;
+$steelBlue: #4682b4;
+
+$primary: $gainsBoro;
+$secondary: $steelBlue;
+
+$light: 25%;
+$lighter: 50%;
+$lightest: 75%;
+$dark: 25%;
+$darker: 50%;
+$darkest: 75%;
+
+$autumn: (
+  green: #004a2f,
+  black: #002f35,
+  orange: #ff6337,
+  yellow: #ffa323
+);
+
+$winter: (
+  black: #233142,
+  blue: #455d7a,
+  red: #f95959,
+  gray: #e3e3e3
+);
+
+$green: #004a2f;
+$black: #002f35;
+$orange: #ff6337;
+$yellow: #ffa323;
+$blue: #455d7a;
+$red: #f95959;
+$gray: #e3e3e3;
+
+$colors: (
+  primary: (
+    base: $primary,
+    light: mix(white, $primary, $light),
+    lighter: mix(white, $primary, $lighter),
+    lightest: mix(white, $primary, $lightest),
+    dark: mix(black, $primary, $dark),
+    darker: mix(black, $primary, $darker),
+    darkest: mix(black, $primary, $darkest),    
+  ),
+  blue: (
+    base: $blue,
+    light: mix(white, $blue, $light),
+    lighter: mix(white, $blue, $lighter),
+    lightest: mix(white, $blue, $lightest),
+    dark: mix(black, $blue, $dark),
+    darker: mix(black, $blue, $darker),
+    darkest: mix(black, $blue, $darkest),  
+  ),
+  black: (
+    base: $black,
+    light: mix(white, $black, $light),
+    lighter: mix(white, $black, $lighter),
+    lightest: mix(white, $black, $lightest),
+    dark: mix(black, $black, $dark),
+    darker: mix(black, $black, $darker),
+    darkest: mix(black, $black, $darkest),  
+  ),  
+  green: (
+    base: $green,
+    light: mix(white, $green, $light),
+    lighter: mix(white, $green, $lighter),
+    lightest: mix(white, $green, $lightest),
+    dark: mix(black, $green, $dark),
+    darker: mix(black, $green, $darker),
+    darkest: mix(black, $green, $darkest),  
+  ),  
+  orange: (
+    base: $orange,
+    light: mix(white, $orange, $light),
+    lighter: mix(white, $orange, $lighter),
+    lightest: mix(white, $orange, $lightest),
+    dark: mix(black, $orange, $dark),
+    darker: mix(black, $orange, $darker),
+    darkest: mix(black, $orange, $darkest),  
+  ),  
+  yellow: (
+    base: $yellow,
+    light: mix(white, $yellow, $light),
+    lighter: mix(white, $yellow, $lighter),
+    lightest: mix(white, $yellow, $lightest),
+    dark: mix(black, $yellow, $dark),
+    darker: mix(black, $yellow, $darker),
+    darkest: mix(black, $yellow, $darkest),  
+  ),
+  red: (
+    base: $red,
+    light: mix(white, $red, $light),
+    lighter: mix(white, $red, $lighter),
+    lightest: mix(white, $red, $lightest),
+    dark: mix(black, $red, $dark),
+    darker: mix(black, $red, $darker),
+    darkest: mix(black, $red, $darkest),  
+  ),
+  gray: (
+    base: $gray,
+    light: mix(white, $gray, $light),
+    lighter: mix(white, $gray, $lighter),
+    lightest: mix(white, $gray, $lightest),
+    dark: mix(black, $gray, $dark),
+    darker: mix(black, $gray, $darker),
+    darkest: mix(black, $gray, $darkest),  
+  ),    
+
+);
