@@ -1,4 +1,4 @@
-# Starter Express 5
+# Starter Express 
 Starter for fullstack applications using express 5. 
 ## Description 
 Uses ejs templating engine for client views. Technologies used: node, express, auth0, mongoDB, and gulp. Used for creating templates.
