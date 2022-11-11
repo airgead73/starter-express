@@ -66,30 +66,14 @@ app.set('view engine', 'ejs');
  */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * error handling
  */
 
  app.use(function(req, res, next) {
   const error = new Error('Path not found.');
-  error.status = 404;
-  error.response = 'html'
   next(error);
 });
-
-app.use(handleError);
 
 /**
  * export app
