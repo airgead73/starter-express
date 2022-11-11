@@ -12,7 +12,11 @@ practice Databases
 ### express
 
 ```
-npm i express cookie-parser express-rate-limit express-session express-validator
+npm i express@5.0.0-beta.1
+```
+### express essentials
+```
+npm i cookie-parser express-rate-limit express-session express-validator
 ```
 ### auth and security
 ```
