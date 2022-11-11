@@ -1,5 +1,5 @@
 {
-  "name": "starter-design",
+  "name": "starter-express",
   "version": "1.0.0",
   "description": "fullstack application starter using node, express, mongodb, auth0, and gulp. Used for creating design templates.",
   "main": "index.js",
@@ -11,7 +11,7 @@
     "watch": "concurrently \"npm:public\" \"npm:server \"",
     "stage": "concurrently \"npm:test\" \"NODE_ENV=test nodemon -r dotenv/config index.js \"",
     "build": "gulp",
-    "deploy": "git push heroku v13:main",
+    "deploy": "git push heroku main",
     "log": "heroku logs --tail"
   },
   "repository": {
