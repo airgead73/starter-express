@@ -8,7 +8,7 @@ Uses ejs templating engine for client views. Technologies used: node, express, a
 ### express
 
 ```
-npm i express@5.0.0-beta.1
+npm i express
 ```
 ### express essentials
 ```
