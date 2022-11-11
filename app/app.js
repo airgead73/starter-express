@@ -17,7 +17,6 @@
  * internal imports
  */
 
-const { handleError } = require('./middleware');
 const { authConfig, connectDB, helmetPolicies, limiter, sessionConfig } = require('./config');
 
 /**
