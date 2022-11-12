@@ -1,54 +1,9 @@
 const { Router } = require('express');
 const apiRouter = Router();
+const { authorRouter } = require('./authors');
+const { bookRouter } = require('./books');
 
-apiRouter.get('/', function(req, res, next) {
-
-  res.status(200)
-    .json({
-      success: true,
-      message: 'API home page.'
-    });
-
-});
-
-apiRouter.get('/authors', function(req, res, next) {
-
-  res.status(200)
-  .json({
-    success: true,
-    message: 'API authors.'
-  });
-
-});
-
-apiRouter.get('/authors/:id', function(req, res, next) {
-
-  res.status(200)
-  .json({
-    success: true,
-    message: `API author detail ${req.params.id}.`
-  });
-
-});
-
-apiRouter.get('/books', function(req, res, next) {
-
-  res.status(200)
-  .json({
-    success: true,
-    message: 'API books.'
-  });
-
-});
-
-apiRouter.get('/books/:id', function(req, res, next) {
-
-  res.status(200)
-  .json({
-    success: true,
-    message: `API book detail ${req.params.id}.`
-  });
-
-});
+apiRouter.use('/authors', authorRouter);
+apiRouter.use('/books', bookRouter);
 
 module.exports = apiRouter;
