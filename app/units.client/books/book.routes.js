@@ -1,28 +1,19 @@
 const { Router } = require('express');
 const bookRouter = Router();
 
-bookRouter.get('/', function(req, res, next) {
+// controller
+const { create, read, detail, update, remove, drop } = require('./book.controller');
 
-  res.status(200)
-    .render('template', {
-      success: true,
-      pagePath: './pages/books/index',
-      title: 'books',
-      heading: 'books'
-    });
+bookRouter.get('/', read);
 
-});
+bookRouter.get('/add', create);
 
-bookRouter.get('/:id', function(req, res, next) {
+bookRouter.get('/drop', drop);
 
-  res.status(200)
-    .render('template', {
-      success: true,
-      pagePath: './pages/books/detail',
-      title: 'book detail',
-      heading: `book: ${req.params.id}`
-    });
+bookRouter.get('/:id', detail);
 
-});
+bookRouter.get('/:id/update', update);
+
+bookRouter.get('/:id/delete', remove);
 
 module.exports = bookRouter;

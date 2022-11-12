@@ -1,28 +1,19 @@
 const { Router } = require('express');
 const authorRouter = Router();
 
-authorRouter.get('/', function(req, res, next) {
+// controllers
+const { create, read, detail, update, remove, drop } = require('./author.controller');
 
-  res.status(200)
-    .render('template', {
-      success: true,
-      pagePath: './pages/authors/index',
-      title: 'authors',
-      heading: 'authors'
-    });
+authorRouter.get('/', read);
 
-});
+authorRouter.get('/add', create);
 
-authorRouter.get('/:id', function(req, res, next) {
+authorRouter.get('/drop', drop);
 
-  res.status(200)
-    .render('template', {
-      success: true,
-      pagePath: './pages/authors/detail',
-      title: 'author detail',
-      heading: `author: ${req.params.id}`
-    });
+authorRouter.get('/:id', detail);
 
-});
+authorRouter.get('/:id/update', update);
+
+authorRouter.get('/:id/delete', remove);
 
 module.exports = authorRouter;
