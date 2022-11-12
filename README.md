@@ -29,20 +29,6 @@ npm i mongoose express-mongo-sanitize
 npm i cloudinary date-fns ejs slugify
 ```
 ## Dev Dependencies
-
-### babel
 ```
-npm i -D @babel/core @babel/preset-env
-```
-### gulp
-```
-npm i -D gulp gulp-babel gulp-concat gulp-postcss gulp-purgecss gulp-rename gulp-sass gulp-sourcemaps gulp-uglify
-```
-### additional css processing
-```
-npm i -D autoprefixer cssnano postcss-combine-media-query rollup-stream sass vinyl-buffer vinyl-source-stream
-```
-### dev processing
-```
-npm i -D concurrently del dotenv nodemon 
+npm i -D concurrently dotenv nodemon 
 ```
