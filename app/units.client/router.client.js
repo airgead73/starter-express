@@ -1,41 +1,10 @@
 const { Router } = require('express');
 const clientRouter = Router();
+const homeRouter = require('./home');
+const authorRouter = require('./authors');
 
-clientRouter.get('/', function(req, res, next) {
-
-  res.status(200)
-    .render('template', {
-      success: true,
-      pagePath: './pages/dashboard/index',
-      title: 'Express Starter',
-      heading: 'home'
-    });
-
-});
-
-clientRouter.get('/authors', function(req, res, next) {
-
-  res.status(200)
-    .render('template', {
-      success: true,
-      pagePath: './pages/authors/index',
-      title: 'authors',
-      heading: 'authors'
-    });
-
-});
-
-clientRouter.get('/authors/:id', function(req, res, next) {
-
-  res.status(200)
-    .render('template', {
-      success: true,
-      pagePath: './pages/authors/detail',
-      title: 'author detail',
-      heading: `author: ${req.params.id}`
-    });
-
-});
+clientRouter.use('/', homeRouter);
+clientRouter.use('/authors', authorRouter);
 
 clientRouter.get('/books', function(req, res, next) {
 
