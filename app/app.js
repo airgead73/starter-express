@@ -10,6 +10,7 @@
  const helmet = require('helmet');
  const hpp = require('hpp');
  const mongoSanitize = require('express-mongo-sanitize');
+ const morgan = require('morgan');
  const session = require('express-session');
  const xss = require('xss-clean');
 
@@ -18,6 +19,9 @@
  */
 
 const { authConfig, connectDB, helmetPolicies, limiter, sessionConfig } = require('./config');
+const { handleError } = require('./middleware');
+const clientRouter = require('./units.client/router.client');
+const apiRouter = require('./units.api/router.api');
 
 /**
  * app activation
@@ -48,6 +52,7 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cookieParser());
 app.use(session(sessionConfig));
+app.use(morgan('tiny'))
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -64,25 +69,21 @@ app.set('view engine', 'ejs');
  * routes
  */
 
+app.use('/', clientRouter);
+app.use('/api', apiRouter);
+
 
 /**
  * error handling
  */
 
-app.use(function(req, res, next) {
-  const error = new Error('This path is not found.');
+app.use('*',function(req, res, next) {
+  const error = new Error('Path not found.');
+  error.status = 404;
   next(error);
 });
 
-app.use(function(err, req, res, next) {
-  console.log(err.status);
-  res.status(err.status).json({
-    success: false,
-    status: err.status,
-    message: err.message,
-    stack: err.stack
-  });
-});
+app.use(handleError);
 
 /**
  * export app
