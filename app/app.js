@@ -48,6 +48,8 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cookieParser());
 app.use(session(sessionConfig));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 /**
  * locals
@@ -67,9 +69,19 @@ app.use(session(sessionConfig));
  * error handling
  */
 
- app.use(function(req, res, next) {
-  const error = new Error('Path not found.');
+app.use(function(req, res, next) {
+  const error = new Error('This path is not found.');
   next(error);
+});
+
+app.use(function(err, req, res, next) {
+  console.log(err.status);
+  res.status(err.status).json({
+    success: false,
+    status: err.status,
+    message: err.message,
+    stack: err.stack
+  });
 });
 
 /**
