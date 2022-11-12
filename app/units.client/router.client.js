@@ -34,4 +34,26 @@ clientRouter.get('/authors/:id', function(req, res, next) {
 
 });
 
+clientRouter.get('/books', function(req, res, next) {
+
+  res.status(200)
+    .render('page', {
+      success: true,
+      title: 'books',
+      heading: 'books'
+    });
+
+});
+
+clientRouter.get('/books/:id', function(req, res, next) {
+
+  res.status(200)
+    .render('page', {
+      success: true,
+      title: 'book detail',
+      heading: `book: ${req.params.id}`
+    });
+
+});
+
 module.exports = clientRouter;
