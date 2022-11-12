@@ -6,11 +6,6 @@
   "scripts": {
     "start": "node index.js",
     "server": "NODE_ENV=development nodemon -r dotenv/config index.js",
-    "public": "gulp dev",
-    "test": "gulp test",
-    "watch": "concurrently \"npm:public\" \"npm:server \"",
-    "stage": "concurrently \"npm:test\" \"NODE_ENV=test nodemon -r dotenv/config index.js \"",
-    "build": "gulp",
     "deploy": "git push heroku v2:main",
     "log": "heroku logs --tail"
   },
