@@ -1,24 +1,18 @@
 const { Router } = require('express');
 const bookRouter = Router();
 
-bookRouter.get('/', function(req, res, next) {
+// controller
+const { create, read, detail, update, remove, drop } = require('./book.controller');
 
-  res.status(200)
-  .json({
-    success: true,
-    message: 'API books.'
-  });
+// routers
+bookRouter.route('/')
+  .post(create)
+  .get(read)
+  .delete(drop);
 
-});
-
-bookRouter.get('/:id', function(req, res, next) {
-
-  res.status(200)
-  .json({
-    success: true,
-    message: `API book detail ${req.params.id}.`
-  });
-
-});
+bookRouter.route('/:id')
+  .get(detail)
+  .patch(update)
+  .delete(remove);
 
 module.exports = bookRouter;

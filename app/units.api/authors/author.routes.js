@@ -1,24 +1,18 @@
 const { Router } = require('express');
 const authorRouter = Router();
 
-authorRouter.get('/', function(req, res, next) {
+// controller
+const { create, read, detail, update, remove, drop } = require('./author.controller');
 
-  res.status(200)
-  .json({
-    success: true,
-    message: 'API authors.'
-  });
+// routers
+authorRouter.route('/')
+  .post(create)
+  .get(read)
+  .delete(drop);
 
-});
-
-authorRouter.get('/:id', function(req, res, next) {
-
-  res.status(200)
-  .json({
-    success: true,
-    message: `API author detail ${req.params.id}.`
-  });
-
-});
+authorRouter.route('/:id')
+  .get(detail)
+  .patch(update)
+  .delete(remove);
 
 module.exports = authorRouter;

@@ -5,7 +5,7 @@ const handleError = (err,req,res,next) => {
   } else {
     status = 500;
   }
-  res.status(err.status).json({
+  res.status(status).json({
     success: false,
     status: status,
     name: err.name,
