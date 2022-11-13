@@ -1,113 +1,150 @@
 /**
- * @desc book create view
- * @route GET - /books/add
+ * @desc Create book 
+ * @route POST - /books
  * @access Private
  * */
 
- exports.create = (req,res,next) => {
+ exports.create = async(req,res,next) => {
 
-  res.status(200)
-  .render('template', {
-    success: true,
-    pagePath: './pages/books/add',
-    title: 'add book',
-    heading: 'add book'
-  });
+  try {
+
+    res.status(200)
+    .json({
+      success: true,
+      message: 'API add book'
+    });
+
+
+  } catch(err) {
+
+    next(err);
+
+  }
   
 }
 
 /**
- * @desc books read view
+ * @desc Read books
  * @route GET - /books
  * @access Private
  * */
 
-exports.read = (req,res,next) => {
+exports.read = async(req,res,next) => {
 
-  res.status(200)
-  .render('template', {
-    success: true,
-    pagePath: './pages/books/index',
-    title: 'books',
-    heading: 'books'
-  });
+  try {
+
+    res.status(200)
+    .json({
+      success: true,
+      message: 'API read books'
+    });
+
+  } catch(err) {
+
+    next(err);
+
+  }
 
 }
 
 /**
- * @desc book detail view
+ * @desc Read book detail
  * @route GET - /books/:id
  * @access Private
  * */
 
-exports.detail = (req,res,next) => {
+exports.detail = async(req,res,next) => {
 
-  const { id: bookID } = req.params;
+  try {
 
-  res.status(200)
-  .render('template', {
-    success: true,
-    pagePath: './pages/books/detail',
-    title: bookID,
-    heading: `book detail: ${bookID}` 
-  });
+    const { id: bookID } = req.params;
+
+    res.status(200)
+    .json({
+      success: true,
+      message: `API book detail: ${bookID}`
+    });
+
+  } catch(err) {
+
+    next(err);
+
+  }
+ 
+}
+
+/**
+ * @desc Update book
+ * @route PATCH - /books/:id
+ * @access Private
+ * */
+
+exports.update = async(req,res,next) => {
+
+  try {
+
+    const { id: bookID } = req.params;
+
+    res.status(200)
+    .json({
+      success: true,
+      message: `API book update: ${bookID}`
+    });
+
+  } catch(err) {
+
+    next(err);
+
+  } 
   
 }
 
 /**
- * @desc book update view
- * @route GET - /books/:id/update
+ * @desc Delete book
+ * @route DELETE - /books/:id
  * @access Private
  * */
 
-exports.update = (req,res,next) => {
+exports.remove = async(req,res,next) => {
 
-  const { id: bookID } = req.params;
+  try {
 
-  res.status(200)
-  .render('template', {
-    success: true,
-    pagePath: './pages/books/update',
-    title: bookID,
-    heading: `book update: ${bookID}` 
-  });  
+    const { id: bookID } = req.params;
+
+    res.status(200)
+    .json({
+      success: true,
+      message: `API book remove: ${bookID}`
+    });
+
+  } catch(err) {
+
+    next(err);
+
+  } 
   
 }
 
 /**
- * @desc book remove view
- * @route GET - /books/:id/delete
+ * @desc Drop book collection 
+ * @route DELETE - /books
  * @access Private
  * */
 
-exports.remove = (req,res,next) => {
+exports.drop = async(req,res,next) => {
 
-  const { id: bookID } = req.params;
+  try {
 
-  res.status(200)
-  .render('template', {
-    success: true,
-    pagePath: './pages/books/remove',
-    title: bookID,
-    heading: `book remove: ${bookID}` 
-  }); 
-  
-}
+    res.status(200)
+    .json({
+      success: true,
+      message: 'API drop book collection'
+    });
 
-/**
- * @desc book drop view
- * @route GET - /books/drop
- * @access Private
- * */
+  } catch(err) {
 
-exports.drop = (req,res,next) => {
+    next(err);
 
-  res.status(200)
-  .render('template', {
-    success: true,
-    pagePath: './pages/books/drop',
-    title: 'drop books',
-    heading: 'drop book collection'
-  });   
+  }   
   
 }
