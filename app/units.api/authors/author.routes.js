@@ -4,6 +4,13 @@ const authorRouter = Router();
 // controller
 const { create, read, detail, update, remove, drop } = require('./author.controller');
 
+// models
+const Author = require('./author');
+
+// middleware
+const { checkID } = require('../../middleware');
+authorRouter.use('/:id', checkID(Author));
+
 // routers
 authorRouter.route('/')
   .post(create)

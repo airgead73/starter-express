@@ -1,18 +1,17 @@
 const mongoose = require("mongoose");
 
-const checkID = ($model) => async (req, res, next) => {
-
-  // check if id is valid
+const checkID = ($model) => async(req, res, next) => {
 
   const { id } = req.params;
 
+  console.log(id);
+
+  // check if id is valid
+
   if(!mongoose.Types.ObjectId.isValid(id)) {
-    return res
-    .status(400)
-    .json({
-      success: false,
-      message: 'ID is not valid.'
-    });    
+    const error = new Error('Id is not valid.');
+    error.status = 400;
+    return next(error);
   }
 
   // check if item exists
@@ -20,15 +19,12 @@ const checkID = ($model) => async (req, res, next) => {
   const data = await $model.findById(id);
 
   if(!data) {
- 
-    return res
-    .status(401)
-    .json({
-      success: false,
-      message: 'Item is not found.'
-    }); 
-      
+    const error = new Error('Item is not found.');
+    error.status = 401;
+    return next(error); 
   }
+
+  res.data = data;
 
   next();
 

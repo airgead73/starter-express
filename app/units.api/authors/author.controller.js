@@ -1,3 +1,5 @@
+const Author = require('./author');
+
 /**
  * @desc Create author 
  * @route POST - /authors
@@ -8,12 +10,17 @@
 
   try {
 
+    console.log(req.body);
+
+    const author = new Author(req.body);
+    await author.save();
+
     res.status(200)
     .json({
       success: true,
-      message: 'API add author'
+      message: `API new author created: ${author.fullname}.`,
+      author
     });
-
 
   } catch(err) {
 
@@ -33,10 +40,14 @@ exports.read = async(req,res,next) => {
 
   try {
 
+    const authors = await Author.find().sort('createdAt');
+
     res.status(200)
     .json({
       success: true,
-      message: 'API read authors'
+      message: 'API list of authors.',
+      count: authors.length,
+      data: authors
     });
 
   } catch(err) {
@@ -57,12 +68,11 @@ exports.detail = async(req,res,next) => {
 
   try {
 
-    const { id: authorID } = req.params;
-
     res.status(200)
     .json({
       success: true,
-      message: `API author detail: ${authorID}`
+      message: 'Author detail retrieved.',
+      data: res.data
     });
 
   } catch(err) {
@@ -83,12 +93,16 @@ exports.update = async(req,res,next) => {
 
   try {
 
-    const { id: authorID } = req.params;
+    const { _id } = res.data;
+
+    const updatedAuthor = await Author.findByIdAndUpdate(_id, req.body, { new: true });
+    const { fullname } = updatedAuthor;
 
     res.status(200)
     .json({
       success: true,
-      message: `API author update: ${authorID}`
+      message: `API author has been updated: ${fullname}`,
+      data: updatedAuthor
     });
 
   } catch(err) {
@@ -109,12 +123,15 @@ exports.remove = async(req,res,next) => {
 
   try {
 
-    const { id: authorID } = req.params;
+    //const { id: authorID } = req.params;
+    const author = res.data;
+    const { fullname } = author;
+    author.remove();
 
     res.status(200)
     .json({
       success: true,
-      message: `API author remove: ${authorID}`
+      message: `API author has been removed: ${fullname}.`
     });
 
   } catch(err) {
@@ -134,6 +151,8 @@ exports.remove = async(req,res,next) => {
 exports.drop = async(req,res,next) => {
 
   try {
+
+    await Author.collection.drop();
 
     res.status(200)
     .json({
