@@ -7,13 +7,14 @@ const { Author } = require('../../units.api/authors');
 
 exports.read = async(req, res, next) => {
 
-  const authors = await Author.find();
+  const { success, count, data: authors } = res.results;
 
   res.status(200)
     .render('template', {
-      success: true,
+      success,
       pagePath: './pages/dashboard/index',
       title: 'Express Starter',
+      count,
       authors
     });
 
