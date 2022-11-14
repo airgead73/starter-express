@@ -1,3 +1,15 @@
-<h2>
-  <%= typeof heading !='undefined' ? heading : 'heading' %>
-</h2>
+<h2>authors</h2>
+<% authors.forEach(author=> { %>
+
+  <details>
+    <summary>
+      <%= author.listname %>
+    </summary>
+    <p>
+      <%= author.fullname %>
+    </p>
+
+
+  </details>
+
+  <% }) %>
