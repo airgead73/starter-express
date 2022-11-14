@@ -34,9 +34,6 @@ const handleQuery = ($model, $populate) => async (req, res, next) => {
 
   const results = await query;
 
-  console.log('query middleware');
-  console.log($populate)
-
   res.results = {
     success: true,
     count: results.length,

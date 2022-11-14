@@ -6,11 +6,17 @@
     <summary>
       <%= author.listname %>
     </summary>
-    <p>
-      <%= author.fullname %>
-    </p>
-
-
+    <% if (!author.books.length) { %>
+      <p>no books listed</p>
+      <% } else { %>
+        <ul>
+          <% (author.books).forEach(book=> { %>
+            <li>
+              <%= book.title %>
+            </li>
+            <% }) %>
+        </ul>
+        <% } %>
   </details>
 
   <% }) %>
