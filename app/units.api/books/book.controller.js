@@ -9,6 +9,21 @@ const Book = require('./book');
 
   try {
 
+    const { success, errors } = res.val_results;
+
+    if(!success) {
+
+      const { errors: responseErrors } = errors;
+
+      return res.status(400)
+        .json({
+          success,
+          message: 'Something went wrong: validation errors.',
+          errors: responseErrors
+        });
+
+    }    
+
     const book = new Book(req.body);
     await book.save();
 

@@ -10,6 +10,21 @@ const Author = require('./author');
 
   try {
 
+    const { success, errors } = res.val_results;
+
+    if(!success) {
+
+      const { errors: responseErrors } = errors;
+
+      return res.status(400)
+        .json({
+          success,
+          message: 'Something went wrong: validation errors.',
+          errors: responseErrors
+        });
+
+    }
+
     const author = new Author(req.body);
     await author.save();
 
