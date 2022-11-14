@@ -1,5 +1,5 @@
 const { body, validationResult } = require('express-validator');
-const { authorArray, bookArray, photoArray } = require('./validationArrays');
+const { authorArray, bookArray } = require('./validationArrays');
  
 const validationRules = ($method) => {
 

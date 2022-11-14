@@ -66,4 +66,11 @@ authorSchema.virtual('listname').get(function() {
   return `${lastName}, ${firstName}`;
 });
 
+authorSchema.virtual('books', {
+  ref: 'Book',
+  localField: '_id',
+  foreignField: 'author',
+  justOne: false
+});
+
 module.exports = mongoose.model('Author', authorSchema);

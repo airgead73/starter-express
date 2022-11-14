@@ -121,7 +121,6 @@ exports.remove = async(req,res,next) => {
 
   try {
 
-    //const { id: authorID } = req.params;
     const author = res.data;
     const { fullname } = author;
     author.remove();

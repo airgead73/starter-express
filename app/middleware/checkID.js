@@ -18,7 +18,7 @@ const checkID = ($model, $populate) => async(req, res, next) => {
 
   query = $model.findById(id);
 
-  if($populate) query = query.poplutate($populate);
+  if($populate) query = query.populate($populate);
 
   const data = await query;
 

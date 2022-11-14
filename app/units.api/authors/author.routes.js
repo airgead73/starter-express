@@ -7,14 +7,24 @@ const { create, read, detail, update, remove, drop } = require('./author.control
 // models
 const Author = require('./author');
 
+// populate
+const populateBooks = {
+  path: 'books',
+  options: {
+    sort: {
+      'title': 1
+    }
+  }
+}
+
 // middleware
-const { checkID, handleQuery } = require('../../middleware');
-authorRouter.use('/:id', checkID(Author));
+const { checkID, handleQuery, validationRules, validate  } = require('../../middleware');
+authorRouter.use('/:id', checkID(Author, populateBooks));
 
 // routers
 authorRouter.route('/')
-  .post(create)
-  .get(handleQuery(Author),read)
+  .post(validationRules('createAuthor'), validate, create)
+  .get(handleQuery(Author, populateBooks),read)
   .delete(drop);
 
 authorRouter.route('/:id')
