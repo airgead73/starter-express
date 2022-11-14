@@ -12,7 +12,9 @@
         <ul>
           <% (author.books).forEach(book=> { %>
             <li>
-              <%= book.title %>
+              <a href="/books/<%= book._id %>">
+                <%= book.title %>
+              </a>
             </li>
             <% }) %>
         </ul>
