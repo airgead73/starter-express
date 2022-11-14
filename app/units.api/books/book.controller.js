@@ -1,3 +1,4 @@
+const Book = require('./book');
 /**
  * @desc Create book 
  * @route POST - /books
@@ -8,10 +9,14 @@
 
   try {
 
+    const book = new Book(req.body);
+    await book.save();
+
     res.status(200)
     .json({
       success: true,
-      message: 'API add book'
+      message: `API author created: ${book.title}.`,
+      book
     });
 
 
@@ -33,10 +38,14 @@ exports.read = async(req,res,next) => {
 
   try {
 
+    const { success, count, data: books } = res.results;
+
     res.status(200)
     .json({
-      success: true,
-      message: 'API read books'
+      success,
+      message: 'API list of books.',
+      count,
+      books
     });
 
   } catch(err) {
@@ -57,12 +66,11 @@ exports.detail = async(req,res,next) => {
 
   try {
 
-    const { id: bookID } = req.params;
-
     res.status(200)
     .json({
       success: true,
-      message: `API book detail: ${bookID}`
+      message: 'API book detail retrieved',
+      data: res.data
     });
 
   } catch(err) {
@@ -83,12 +91,15 @@ exports.update = async(req,res,next) => {
 
   try {
 
-    const { id: bookID } = req.params;
+    const { _id } = res.data;
+    const updatedBook = await Book.findByIdAndUpdate(_id, req.body, { new: true });
+    const { title } = updatedBook;
 
     res.status(200)
     .json({
       success: true,
-      message: `API book update: ${bookID}`
+      message: `API book update: ${title}`,
+      data: updatedBook
     });
 
   } catch(err) {
@@ -109,12 +120,14 @@ exports.remove = async(req,res,next) => {
 
   try {
 
-    const { id: bookID } = req.params;
+    const book = res.data;
+    const { title } = book;
+    book.remove();
 
     res.status(200)
     .json({
       success: true,
-      message: `API book remove: ${bookID}`
+      message: `API book remove: ${title}`
     });
 
   } catch(err) {
@@ -134,6 +147,8 @@ exports.remove = async(req,res,next) => {
 exports.drop = async(req,res,next) => {
 
   try {
+
+    await Book.collection.drop();
 
     res.status(200)
     .json({

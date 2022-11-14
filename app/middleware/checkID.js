@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const checkID = ($model) => async(req, res, next) => {
+const checkID = ($model, $populate) => async(req, res, next) => {
 
   const { id } = req.params;
 
@@ -14,9 +14,13 @@ const checkID = ($model) => async(req, res, next) => {
     return next(error);
   }
 
-  // check if item exists
+  let query;
 
-  const data = await $model.findById(id);
+  query = $model.findById(id);
+
+  if($populate) query = query.poplutate($populate);
+
+  const data = await query;
 
   if(!data) {
     const error = new Error('Item is not found.');

@@ -10,8 +10,6 @@ const Author = require('./author');
 
   try {
 
-    console.log(req.body);
-
     const author = new Author(req.body);
     await author.save();
 
@@ -40,14 +38,14 @@ exports.read = async(req,res,next) => {
 
   try {
 
-    const authors = await Author.find().sort('createdAt');
+    const { success, count, data: authors } = res.results;
 
     res.status(200)
     .json({
-      success: true,
+      success,
       message: 'API list of authors.',
-      count: authors.length,
-      data: authors
+      count,
+      authors
     });
 
   } catch(err) {
@@ -101,7 +99,7 @@ exports.update = async(req,res,next) => {
     res.status(200)
     .json({
       success: true,
-      message: `API author has been updated: ${fullname}`,
+      message: `API author has been updated: $${fullname}`,
       data: updatedAuthor
     });
 

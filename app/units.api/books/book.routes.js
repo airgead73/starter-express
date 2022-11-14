@@ -4,10 +4,17 @@ const bookRouter = Router();
 // controller
 const { create, read, detail, update, remove, drop } = require('./book.controller');
 
+// models
+const Book = require('./book');
+
+// middleware
+const { checkID, handleQuery } = require('../../middleware');
+bookRouter.use('/:id', checkID(Book, 'author'));
+
 // routers
 bookRouter.route('/')
   .post(create)
-  .get(read)
+  .get(handleQuery(Book, 'author'), read)
   .delete(drop);
 
 bookRouter.route('/:id')

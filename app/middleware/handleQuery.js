@@ -1,8 +1,4 @@
-const handleQuery = ($model) => async (req, res, next) => {
-
-  /**
- * @todo Add populate functionality to query function.
- * */
+const handleQuery = ($model, $populate) => async (req, res, next) => {
 
   let query;
 
@@ -25,9 +21,15 @@ const handleQuery = ($model) => async (req, res, next) => {
   // sort
   if (req.query.sort) {
     const sortBy = req.query.sort.split(',').join(' ');
+    console.log(sortBy)
     query = query.sort(sortBy)
   } else {
     query = query.sort('lname')
+  }
+
+  // populate
+  if($populate) {
+    query = query.populate($populate);
   }
 
   const results = await query;

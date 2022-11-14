@@ -8,13 +8,13 @@ const { create, read, detail, update, remove, drop } = require('./author.control
 const Author = require('./author');
 
 // middleware
-const { checkID } = require('../../middleware');
+const { checkID, handleQuery } = require('../../middleware');
 authorRouter.use('/:id', checkID(Author));
 
 // routers
 authorRouter.route('/')
   .post(create)
-  .get(read)
+  .get(handleQuery(Author),read)
   .delete(drop);
 
 authorRouter.route('/:id')
