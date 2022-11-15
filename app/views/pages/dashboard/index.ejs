@@ -1,24 +1,32 @@
-<h2>authors <%= count %>
-</h2>
-<% authors.forEach(author=> { %>
+<h2>authors</h2>
 
-  <details>
-    <summary>
-      <%= author.listname %>
-    </summary>
-    <% if (!author.books.length) { %>
-      <p>no books listed</p>
-      <% } else { %>
-        <ul>
-          <% (author.books).forEach(book=> { %>
-            <li>
-              <a href="/books/<%= book._id %>">
-                <%= book.title %>
-              </a>
-            </li>
-            <% }) %>
-        </ul>
-        <% } %>
-  </details>
+<ul>
+  <% authors.forEach(author=> { %>
 
-  <% }) %>
+    <li>
+      <a href="/authors/<%= author._id %>">
+        <%= author.listname %>
+      </a>
+    </li>
+
+    <% }) %>
+</ul>
+
+
+<h2>books</h2>
+
+<ul>
+  <% books.forEach(book=> { %>
+
+    <li>
+      <a href="/books/<%= book._id %>">
+        <%= book.title %>
+      </a>
+      by
+      <a href="/authors/<%= book.author._id %>">
+        <%= book.author.fullname %>
+      </a>
+    </li>
+
+    <% }) %>
+</ul>

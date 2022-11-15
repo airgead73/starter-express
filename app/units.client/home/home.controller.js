@@ -1,4 +1,5 @@
 const { Author } = require('../../units.api/authors');
+const { Book } = require('../../units.api/books');
 /**
  * @desc Dashboard view
  * @route GET - /
@@ -7,15 +8,24 @@ const { Author } = require('../../units.api/authors');
 
 exports.read = async(req, res, next) => {
 
-  const { success, count, data: authors } = res.results;
+  try {
+
+    const authors = await Author.find().sort('lname').populate('books');
+    const books = await Book.find().sort('title').populate('author');
 
   res.status(200)
     .render('template', {
-      success,
+      success: true,
       pagePath: './pages/dashboard/index',
       title: 'Express Starter',
-      count,
-      authors
-    });
+      authors,
+      books
+    });    
+
+  } catch(err) {
+
+    next(err);
+
+  }
 
 }
