@@ -1,3 +1,26 @@
 <h2>
   <%= typeof heading !='undefined' ? heading : 'heading' %>
 </h2>
+
+<% authors.forEach(author=> { %>
+
+  <details>
+    <summary>
+      <%= author.listname %>
+    </summary>
+    <ul>
+
+      <% if (!author.books.length) { %>
+        <li>no books</li>
+        <% } %>
+          <% (author.books).forEach(book=> { %>
+            <li>
+              <%= book.title %>
+            </li>
+            <% }) %>
+              <li><a href="/books/add">add book</a></li>
+
+    </ul>
+  </details>
+
+  <% }) %>

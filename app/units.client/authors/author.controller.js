@@ -24,13 +24,27 @@ exports.create = (req,res,next) => {
 
 exports.read = (req,res,next) => {
 
-  res.status(200)
-  .render('template', {
-    success: true,
-    pagePath: './pages/authors/index',
-    title: 'authors',
-    heading: 'authors'
-  });
+  try {
+
+    const { success, count, data: authors } = res.results;
+
+    console.log(authors);
+
+    res.status(200)
+    .render('template', {
+      success,
+      pagePath: './pages/authors/index',
+      title: 'authors',
+      heading: 'authors',
+      count,
+      authors
+    });    
+
+  } catch(err) {
+
+    next(err)
+
+  }
 
 }
 
