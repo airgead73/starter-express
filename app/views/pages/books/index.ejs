@@ -1,3 +1,19 @@
 <h2>
   <%= typeof heading !='undefined' ? heading : 'heading' %>
 </h2>
+
+<ul>
+  <% books.forEach(book=> { %>
+
+    <li>
+      <a href="/books/<%= book._id %>">
+        <%= book.title %>
+      </a>
+      by
+      <a href="/authors/<%= book.author._id %>">
+        <%= book.author.fullname %>
+      </a>
+    </li>
+
+    <% }) %>
+</ul>
