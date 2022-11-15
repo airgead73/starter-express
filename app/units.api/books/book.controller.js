@@ -81,11 +81,14 @@ exports.detail = async(req,res,next) => {
 
   try {
 
+    const { id } = req.params;
+    const book = await Book.findById(id);
+
     res.status(200)
     .json({
       success: true,
       message: 'API book detail retrieved',
-      data: res.data
+      data: book
     });
 
   } catch(err) {
@@ -106,8 +109,8 @@ exports.update = async(req,res,next) => {
 
   try {
 
-    const { _id } = res.data;
-    const updatedBook = await Book.findByIdAndUpdate(_id, req.body, { new: true });
+    const { id } = req.params;
+    const updatedBook = await Book.findByIdAndUpdate(id, req.body, { new: true });
     const { title } = updatedBook;
 
     res.status(200)
@@ -135,7 +138,8 @@ exports.remove = async(req,res,next) => {
 
   try {
 
-    const book = res.data;
+    const { id } = req.params;
+    const book = await Book.findById(id);
     const { title } = book;
     book.remove();
 

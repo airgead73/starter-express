@@ -47,6 +47,8 @@ authorSchema.pre("save", function(next) {
 
 authorSchema.virtual('dates_formatted').get(function() {
 
+  if(!this.createdAt || !this.updatedAt) return;
+
   return {
     createdAt: format(this.createdAt, 'MMMM d, yyyy'),
     updatedAt: format(this.updatedAt, 'MMMM d, yyyy')
@@ -55,12 +57,18 @@ authorSchema.virtual('dates_formatted').get(function() {
 });
 
 authorSchema.virtual('fullname').get(function() {
+
+  if(!this.fname || !this.lname) return;
+
   const firstName = (this.fname).charAt(0).toUpperCase() + (this.fname).slice(1);
   const lastName = (this.lname).charAt(0).toUpperCase() + (this.lname).slice(1);
   return `${firstName} ${lastName}`;
 });
 
 authorSchema.virtual('listname').get(function() {
+
+  if(!this.fname || !this.lname) return;
+
   const firstName = (this.fname).charAt(0).toUpperCase() + (this.fname).slice(1);
   const lastName = (this.lname).charAt(0).toUpperCase() + (this.lname).slice(1);
   return `${lastName}, ${firstName}`;

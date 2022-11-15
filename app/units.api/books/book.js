@@ -33,6 +33,8 @@ bookSchema.pre("save", function() {
 
 bookSchema.virtual('dates_formatted').get(function() {
 
+  if(!this.createdAt || !this.updatedAt) return;
+
   return {
     createdAt: format(this.createdAt, 'MMMM d, yyyy'),
     updatedAt: format(this.updatedAt, 'MMMM d, yyyy')
