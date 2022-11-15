@@ -57,12 +57,12 @@ exports.detail = async(req,res,next) => {
 
   try {
 
-    const { id: bookID } = req.params;
-
     res.status(200)
-    .json({
-      success: true,
-      message: `API book detail: ${bookID}`
+    .render('template', {
+      success,
+      pagePath: './pages/books/detail',
+      title: 'Express Starter',
+      book: res.data
     });
 
   } catch(err) {

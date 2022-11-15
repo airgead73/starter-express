@@ -4,8 +4,6 @@ const checkID = ($model, $populate) => async(req, res, next) => {
 
   const { id } = req.params;
 
-  console.log(id);
-
   // check if id is valid
 
   if(!mongoose.Types.ObjectId.isValid(id)) {
@@ -28,7 +26,7 @@ const checkID = ($model, $populate) => async(req, res, next) => {
     return next(error); 
   }
 
-  res.data = data;
+  res.data = data;  
 
   next();
 
