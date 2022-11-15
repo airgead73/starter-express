@@ -1,3 +1,5 @@
+const { Book } = require('../../units.api/books');
+
 /**
  * @desc Create book 
  * @route POST - /books
@@ -57,12 +59,16 @@ exports.detail = async(req,res,next) => {
 
   try {
 
+    const { id } = req.params;
+
+    const book = await Book.findById(id).populate('author');
+
     res.status(200)
     .render('template', {
-      success,
+      success: true,
       pagePath: './pages/books/detail',
       title: 'Express Starter',
-      book: res.data
+      book
     });
 
   } catch(err) {
@@ -83,12 +89,16 @@ exports.update = async(req,res,next) => {
 
   try {
 
-    const { id: bookID } = req.params;
+    const { id } = req.params;
+
+    const book = await Book.findById(id).populate('author');
 
     res.status(200)
-    .json({
+    .render('template', {
       success: true,
-      message: `API book update: ${bookID}`
+      pagePath: './pages/books/update',
+      title: 'Express Starter',
+      book
     });
 
   } catch(err) {
@@ -109,12 +119,16 @@ exports.remove = async(req,res,next) => {
 
   try {
 
-    const { id: bookID } = req.params;
+    const { id } = req.params;
+
+    const book = await Book.findById(id).populate('author');
 
     res.status(200)
-    .json({
+    .render('template', {
       success: true,
-      message: `API book remove: ${bookID}`
+      pagePath: './pages/books/remove',
+      title: 'Express Starter',
+      book
     });
 
   } catch(err) {

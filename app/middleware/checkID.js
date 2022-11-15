@@ -1,34 +1,46 @@
 const mongoose = require("mongoose");
 
+// models
+const { Author } = require('../units.api/authors');
+
 const checkID = ($model, $populate) => async(req, res, next) => {
 
-  const { id } = req.params;
+  try {
 
-  // check if id is valid
+    // check if id is valid
 
-  if(!mongoose.Types.ObjectId.isValid(id)) {
-    const error = new Error('Id is not valid.');
-    error.status = 400;
-    return next(error);
+    const { id } = req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+
+      const error = new Error('ID is not valid.');
+      error.status = 400;
+
+      return next(error);
+
+
+    }
+
+    // check if item exists
+
+    const data = await $model.findById(id);
+
+    if(!data) {
+
+      const error = new Error('Item does not exist.');
+      error.status = 401;
+
+      return next(error);
+
+    }
+
+    next();
+
+  } catch(err) {
+
+    next(err);
+
   }
-
-  let query;
-
-  query = $model.findById(id);
-
-  if($populate) query = query.populate($populate);
-
-  const data = await query;
-
-  if(!data) {
-    const error = new Error('Item is not found.');
-    error.status = 401;
-    return next(error); 
-  }
-
-  res.data = data;  
-
-  next();
 
 }
 

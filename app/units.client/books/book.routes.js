@@ -18,8 +18,8 @@ bookRouter.get('/drop', drop);
 
 bookRouter.get('/:id', checkID(Author, 'author'), detail);
 
-bookRouter.get('/:id/update', checkID(Author, 'author'), update);
+bookRouter.get('/:id/update', update);
 
-bookRouter.get('/:id/delete', checkID(Author, 'author'), remove);
+bookRouter.get('/:id/delete', remove);
 
 module.exports = bookRouter;
