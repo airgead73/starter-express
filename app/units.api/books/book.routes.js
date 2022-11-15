@@ -8,8 +8,7 @@ const { create, read, detail, update, remove, drop } = require('./book.controlle
 const Book = require('./book');
 
 // middleware
-const { checkID, handleQuery } = require('../../middleware');
-bookRouter.use('/:id', checkID(Book, 'author'));
+const { handleQuery } = require('../../middleware');
 
 // routers
 bookRouter.route('/')

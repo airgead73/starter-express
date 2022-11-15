@@ -18,8 +18,7 @@ const populateBooks = {
 }
 
 // middleware
-const { checkID, handleQuery, validationRules, validate  } = require('../../middleware');
-authorRouter.use('/:id', checkID(Author, populateBooks));
+const { handleQuery, validationRules, validate  } = require('../../middleware');
 
 // routers
 authorRouter.route('/')

@@ -81,11 +81,15 @@ exports.detail = async(req,res,next) => {
 
   try {
 
+    const { id } = req.params;
+
+    const author = await Author.findById(id);
+
     res.status(200)
     .json({
       success: true,
       message: 'Author detail retrieved.',
-      data: res.data
+      data: author
     });
 
   } catch(err) {
@@ -106,15 +110,15 @@ exports.update = async(req,res,next) => {
 
   try {
 
-    const { _id } = res.data;
+    const { id } = req.params;
 
-    const updatedAuthor = await Author.findByIdAndUpdate(_id, req.body, { new: true });
+    const updatedAuthor = await Author.findByIdAndUpdate(id, req.body, { new: true });
     const { fullname } = updatedAuthor;
 
     res.status(200)
     .json({
       success: true,
-      message: `API author has been updated: $${fullname}`,
+      message: `API author has been updated: ${fullname}`,
       data: updatedAuthor
     });
 
@@ -136,7 +140,8 @@ exports.remove = async(req,res,next) => {
 
   try {
 
-    const author = res.data;
+    const { id } = req.params;
+    const author = await Author.findById(id);
     const { fullname } = author;
     author.remove();
 
