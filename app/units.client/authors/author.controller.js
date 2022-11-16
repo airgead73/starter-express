@@ -86,17 +86,26 @@ exports.detail = async(req,res,next) => {
  * @access Private
  * */
 
-exports.update = (req,res,next) => {
+exports.update = async(req,res,next) => {
 
-  const { id: authorID } = req.params;
+  try {
 
-  res.status(200)
-  .render('template', {
-    success: true,
-    pagePath: './pages/authors/update',
-    title: authorID,
-    heading: `author update: ${authorID}` 
-  });  
+    const { id } = req.params;
+    const author = await Author.findById(id);
+
+    res.status(200)
+    .render('template', {
+      success: true,
+      pagePath: './pages/authors/update',
+      title: `update ${author.lname}`,
+      heading: `Update ${author.fullname}` 
+    }); 
+
+  } catch(err) {
+
+    next(err);
+
+  } 
   
 }
 
