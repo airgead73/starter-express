@@ -1,3 +1,4 @@
+const { Author } = require('../../units.api/authors');
 /**
  * @desc author create view
  * @route GET - /authors/add
@@ -28,8 +29,6 @@ exports.read = (req,res,next) => {
 
     const { success, count, data: authors } = res.results;
 
-    console.log(authors);
-
     res.status(200)
     .render('template', {
       success,
@@ -54,18 +53,31 @@ exports.read = (req,res,next) => {
  * @access Private
  * */
 
-exports.detail = (req,res,next) => {
+exports.detail = async(req,res,next) => {
 
-  const { id: authorID } = req.params;
+  try {
 
-  res.status(200)
-  .render('template', {
-    success: true,
-    pagePath: './pages/authors/detail',
-    title: authorID,
-    heading: `author detail: ${authorID}` 
-  });
-  
+    const { id } = req.params;
+    const author = await Author.findById(id).populate('books');
+    const { books } = author
+
+    res.status(200)
+    .render('template', {
+      success: true,
+      pagePath: './pages/authors/detail',
+      title: 'author detail',
+      author,
+      books
+    });
+    
+
+  } catch(err) {
+
+    next(err);
+
+  }
+
+
 }
 
 /**

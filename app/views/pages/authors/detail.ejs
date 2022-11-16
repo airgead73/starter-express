@@ -1,6 +1,16 @@
 <h2>
-  <%= typeof heading !='undefined' ? heading : 'heading' %>
+  <%= typeof author.fullname !='undefined' ? author.fullname : 'author name' %>
 </h2>
-<h3>
-  <%= book.title %> by <%= book.author.fullname %>
-</h3>
+<p><small><a href="/books/add?author=<%= author._id %>">add book</a> <a
+      href="/authors/<%= author._id %>/update">update</a> <a href="/authors/<%= author._id %>/delete">delete</a></small>
+</p>
+
+<ul>
+  <% books.forEach(book=> { %>
+
+    <li><a href="/books/<%= book._id %>">
+        <%= book.title %>
+      </a></li>
+
+    <% }) %>
+</ul>
