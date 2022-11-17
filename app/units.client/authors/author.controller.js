@@ -98,7 +98,7 @@ exports.update = async(req,res,next) => {
       success: true,
       pagePath: './pages/authors/update',
       title: `update ${author.lname}`,
-      heading: `Update ${author.fullname}` 
+      author
     }); 
 
   } catch(err) {
