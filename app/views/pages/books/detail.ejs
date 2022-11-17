@@ -1,6 +1,11 @@
-<h2>
-  <%= typeof book.title !='undefined' ? book.title : 'book title' %>
-</h2>
+<article>
+  <h2>
+    <%= typeof book.title !='undefined' ? book.title : 'book title' %>
+  </h2>
+  <p>by <%= book.author.fullname %>
+  </p>
+</article>
+
 <p>
   <a href="/books/<%= book._id %>/update">update</a>
   <a href="/books/<%= book._id %>/delete">delete</a>

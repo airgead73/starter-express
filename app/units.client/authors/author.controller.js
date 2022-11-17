@@ -5,15 +5,23 @@ const { Author } = require('../../units.api/authors');
  * @access Private
  * */
 
-exports.create = (req,res,next) => {
+exports.create = async(req,res,next) => {
 
-  res.status(200)
-  .render('template', {
-    success: true,
-    pagePath: './pages/authors/add',
-    title: 'add author',
-    heading: 'add author'
-  });
+  try {
+
+    res.status(200)
+    .render('template', {
+      success: true,
+      pagePath: './pages/authors/add',
+      title: 'add author',
+      heading: 'add author'
+    });    
+
+  } catch(err) {
+
+    next(err);
+
+  }
   
 }
 

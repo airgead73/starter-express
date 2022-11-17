@@ -1,4 +1,5 @@
 const { Book } = require('../../units.api/books');
+const { Author } = require('../../units.api/authors');
 
 /**
  * @desc Create book 
@@ -10,12 +11,26 @@ const { Book } = require('../../units.api/books');
 
   try {
 
-    res.status(200)
-    .json({
-      success: true,
-      message: 'API add book'
-    });
+    let author, authors;
 
+    const { author: authorID } = req.query;
+    const hasAuthor = authorID !== undefined;
+
+    if(hasAuthor) {
+      author = await Author.findById(authorID);
+    } else {
+      authors = await Author.find().sort('lname');
+    }
+
+    res.status(200)
+    .render('template', {
+      success: true,
+      pagePath: './pages/books/add',
+      title: 'add book',
+      heading: 'add book',
+      author: author || null,
+      authors: authors || null
+    });    
 
   } catch(err) {
 
@@ -35,15 +50,21 @@ exports.read = async(req,res,next) => {
 
   try {
 
+    const { success, count, data: books } = res.results;
+
     res.status(200)
-    .json({
-      success: true,
-      message: 'API read books'
-    });
+    .render('template', {
+      success,
+      pagePath: './pages/books/index',
+      title: 'books',
+      heading: 'books',
+      count,
+      books
+    });    
 
   } catch(err) {
 
-    next(err);
+    next(err)
 
   }
 
@@ -92,13 +113,15 @@ exports.update = async(req,res,next) => {
     const { id } = req.params;
 
     const book = await Book.findById(id).populate('author');
+    const authors = await Authors.find().sort('lname');
 
     res.status(200)
     .render('template', {
       success: true,
       pagePath: './pages/books/update',
       title: 'Express Starter',
-      book
+      book,
+      authors
     });
 
   } catch(err) {

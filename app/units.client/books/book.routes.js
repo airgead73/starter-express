@@ -5,18 +5,19 @@ const bookRouter = Router();
 const { create, read, detail, update, remove, drop } = require('./book.controller');
 
 // middleware
-const { checkID } = require('../../middleware');
+const { checkID, handleQuery } = require('../../middleware');
 
 // model
 const { Author } = require('../../units.api/authors');
+const { Book } = require('../../units.api/books');
 
-bookRouter.get('/', read);
+bookRouter.get('/', handleQuery(Book, 'author'), read);
 
 bookRouter.get('/add', create);
 
 bookRouter.get('/drop', drop);
 
-bookRouter.get('/:id', checkID(Author, 'author'), detail);
+bookRouter.get('/:id', detail);
 
 bookRouter.get('/:id/update', update);
 

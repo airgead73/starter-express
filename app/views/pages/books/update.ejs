@@ -1,7 +1,21 @@
+<article>
+  <form action="/books/<%=book._id%>" method="POST">
+    <fieldset>
+      <legend>update <%=book.title%>
+      </legend>
+      <label for="title">title</label>
+      <input type="text" name="title" id="title">
+      <label for="slug">slug</label>
+      <input type="text" name="slug" id="slug">
+    </fieldset>
+  </form>
+</article>
+<article>
+  <p>
+    <a href="/books/<%= book._id %>">detail</a>
+    <a href="/books/<%= book._id %>/delete">delete</a>
+  </p>
+</article>
 <h2>
   <%= typeof book.title !='undefined' ? book.title : 'book title' %>
 </h2>
-<p>
-  <a href="/books/<%= book._id %>">detail</a>
-  <a href="/books/<%= book._id %>/delete">delete</a>
-</p>

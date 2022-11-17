@@ -1,0 +1,29 @@
+<form action="/api/books" method="POST" target="_blank">
+  <fieldset>
+    <legend>
+
+      <% if (author) { %>
+        <span>
+          <%= author.fullname %>:
+        </span>
+        <% } %>
+          <span>add book</span>
+    </legend>
+    <% if (author) { %>
+      <input type="hidden" name="author" id="author" value="<%=author._id%>">
+      <% } %>
+        <label for="title">title</label>
+        <input type="text" name="title" id="title">
+        <% if (authors) { %>
+          <select name="author" id="author">
+            <option selected>choose author</option>
+            <% authors.forEach(author=> { %>
+              <option value="<%= author._id %>">
+                <%= author.fullname %>
+              </option>
+              <% }) %>
+          </select>
+          <% } %>
+            <button>add</button>
+  </fieldset>
+</form>
