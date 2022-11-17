@@ -1,7 +1,13 @@
-<h2>
-  <%= typeof book.title !='undefined' ? book.title : 'book title' %>
-</h2>
-<p>
-  <a href="/books/<%= book._id %>/update">update</a>
-  <a href="/books/<%= book._id %>">detail</a>
-</p>
+<form action="/api/books/<%= book._id %>" method="POST">
+  <fieldset>
+    <legend>
+      <%= book.title %>
+    </legend>
+    <label>Do you wish to delete <a href="/books/<%= book._id %>" title="return to <%= book.title %>'s page">
+        <%= book.title %>
+      </a>?
+    </label>
+    <button type="submit">delete</button>
+  </fieldset>
+
+</form>

@@ -113,7 +113,7 @@ exports.update = async(req,res,next) => {
     const { id } = req.params;
 
     const book = await Book.findById(id).populate('author');
-    const authors = await Authors.find().sort('lname');
+    const authors = await Author.find().sort('lname');
 
     res.status(200)
     .render('template', {
@@ -150,7 +150,7 @@ exports.remove = async(req,res,next) => {
     .render('template', {
       success: true,
       pagePath: './pages/books/remove',
-      title: 'Express Starter',
+      title: `${book.title}: delete`,
       book
     });
 

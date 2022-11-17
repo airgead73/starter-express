@@ -1,12 +1,25 @@
 <article>
   <form action="/books/<%=book._id%>" method="POST">
     <fieldset>
-      <legend>update <%=book.title%>
+      <legend>
+        <%=book.title%>: update
       </legend>
       <label for="title">title</label>
-      <input type="text" name="title" id="title">
+      <input type="text" name="title" id="title" value="<%= book.title %>">
       <label for="slug">slug</label>
-      <input type="text" name="slug" id="slug">
+      <input type="text" name="slug" id="slug" value="<%= book.slug %>">
+      <label for="author">author</label>
+      <select name="author" id="author">
+        <option value="book.author_id" selected>
+          <%= book.author.fullname %>
+            <% authors.forEach(author=> { %>
+        <option value="<%= author._id %>">
+          <%= author.fullname%>
+        </option>
+        <% }) %>
+          </option>
+      </select>
+      <button type="submit">update</button>
     </fieldset>
   </form>
 </article>
@@ -16,6 +29,3 @@
     <a href="/books/<%= book._id %>/delete">delete</a>
   </p>
 </article>
-<h2>
-  <%= typeof book.title !='undefined' ? book.title : 'book title' %>
-</h2>
