@@ -115,17 +115,26 @@ exports.update = async(req,res,next) => {
  * @access Private
  * */
 
-exports.remove = (req,res,next) => {
+exports.remove = async(req,res,next) => {
 
-  const { id: authorID } = req.params;
+  try {
 
-  res.status(200)
-  .render('template', {
-    success: true,
-    pagePath: './pages/authors/remove',
-    title: authorID,
-    heading: `author remove: ${authorID}` 
-  }); 
+    const { id } = req.params;
+    const author = await Author.findById(id);
+
+    res.status(200)
+    .render('template', {
+      success: true,
+      pagePath: './pages/authors/remove',
+      title: `delete ${author.lname}`,
+      author
+    }); 
+
+  } catch(err) {
+
+    next(err);
+
+  } 
   
 }
 

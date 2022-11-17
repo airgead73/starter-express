@@ -1,3 +1,14 @@
-<h2>
-  <%= typeof heading !='undefined' ? heading : 'heading' %>
-</h2>
+<form action="/api/authors/<%= author._id %>" method="POST">
+  <fieldset>
+    <legend>
+      <%= author.fname %>
+        <%= author.lname %>
+    </legend>
+    <label>Do you wish to delete <a href="/authors/<%= author._id %>" title="return to <%= author.fullname %>'s page">
+        <%= author.fullname %>
+      </a>?
+    </label>
+    <button type="submit">delete</button>
+  </fieldset>
+
+</form>

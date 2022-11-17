@@ -1,17 +1,21 @@
 <form action="/api/authors" method="POST">
   <fieldset>
-    <legend>update author<legend>
-        <label for="fname">first name</label>
-        <input type="text" name="fname" id="fname">
-        <label for="lname">last name</label>
-        <input type="text" name="lname" id="lname">
-        <label for="status">status</label>
-        <input list="statusOptions" name="status" id="status">
-        <datalist id="statusOptions">
-          <option value="inactive">inactive</option>
-          <option value="active">active</option>
-        </datalist>
-        <button type="submit">add</button>
+    <legend>update <%= author.fname %>
+        <%= author.lname %>
+    </legend>
+    <label for="fname">first name</label>
+    <input type="text" name="fname" id="fname" value="<%= author.fname%>">
+    <label for="lname">last name</label>
+    <input type="text" name="lname" id="lname" value="<%= author.lname%>">
+    <label for="slug">slug</label>
+    <input type="text" name="slug" id="slug" value="<%= author.slug%>">
+    <label for="status">status</label>
+    <input list="statusOptions" name="status" id="status" value="<%= author.status%>">
+    <datalist id="statusOptions">
+      <option value="inactive">inactive</option>
+      <option value="active">active</option>
+    </datalist>
+    <button type="submit">update</button>
   </fieldset>
 
 </form>

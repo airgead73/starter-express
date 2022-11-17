@@ -1,15 +1,17 @@
-<h2>
-  <%= typeof heading !='undefined' ? heading : 'heading' %>
-</h2>
+<article>
+  <h2>
+    <%= typeof heading !='undefined' ? heading : 'heading' %>
+  </h2>
 
-<ul>
-  <% authors.forEach(author=> { %>
+  <ul>
+    <% authors.forEach(author=> { %>
 
-    <li>
-      <a href="/authors/<%= author._id %>">
-        <%= author.listname %>
-      </a>
-    </li>
+      <li>
+        <a href="/authors/<%= author._id %>">
+          <%= author.listname %>
+        </a>
+      </li>
 
-    <% }) %>
-</ul>
+      <% }) %>
+  </ul>
+</article>
