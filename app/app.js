@@ -74,7 +74,6 @@ app.set('view engine', 'ejs');
 app.use('/', clientRouter);
 app.use('/api', apiRouter);
 
-
 /**
  * error handling
  */
