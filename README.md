@@ -3,7 +3,7 @@ Starter for fullstack applications using express 5.
 ## Description 
 Uses ejs templating engine for client views. Technologies used: node, express, auth0, mongoDB, and gulp. Used for creating templates.
 ## Branch v3
-Basic express setup for routing practice and error handling.
+Basic express practice api response.
 
 ##  Dependencies
 
