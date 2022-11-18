@@ -154,12 +154,20 @@ exports.remove = async(req,res,next) => {
 
 exports.drop = (req,res,next) => {
 
-  res.status(200)
-  .render('template', {
-    success: true,
-    pagePath: './pages/authors/drop',
-    title: 'drop authors',
-    heading: 'drop author collection'
-  });   
+  try {
+
+    res.status(200)
+    .render('template', {
+      success: true,
+      pagePath: './pages/authors/drop',
+      title: 'drop authors',
+      heading: 'drop author collection'
+    }); 
+
+  } catch(err) {
+
+    next(err);
+
+  }   
   
 }

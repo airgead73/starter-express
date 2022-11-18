@@ -173,10 +173,12 @@ exports.drop = async(req,res,next) => {
   try {
 
     res.status(200)
-    .json({
+    .render('template', {
       success: true,
-      message: 'API drop book collection'
-    });
+      pagePath: './pages/books/drop',
+      title: 'drop books',
+      heading: 'drop book collection'
+    }); 
 
   } catch(err) {
 
