@@ -1,4 +1,4 @@
-const { body, validationResult } = require('express-validator');
+const { validationResult } = require('express-validator');
 const { authorArray, bookArray } = require('./validationArrays');
  
 const validationRules = ($method) => {
@@ -9,9 +9,6 @@ const validationRules = ($method) => {
       break;
     case 'createBook':
       return bookArray;
-      break;
-    case 'createPhoto':
-      return photoArray;
       break;
   }
 
