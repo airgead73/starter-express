@@ -3,6 +3,7 @@
  */
 
  const express = require('express');
+ const methodOverride = require('method-override');
  const { auth } = require('express-openid-connect');
  const path = require('path');
  const cors = require('cors');
@@ -52,7 +53,8 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cookieParser());
 app.use(session(sessionConfig));
-app.use(morgan('tiny'))
+app.use(morgan('tiny'));
+app.use(methodOverride('_method'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
