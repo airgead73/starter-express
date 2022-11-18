@@ -1,3 +1,9 @@
-<h2>
-  <%= typeof heading !='undefined' ? heading : 'heading' %>
-</h2>
+<form action="/api/authors?_method=DELETE" method="POST">
+  <fieldset>
+    <legend>author collection</legend>
+    <label for="button">
+      Are you sure you want to delete <a href="/authors">author</a> collection?
+    </label>
+    <button type="submit">drop collection</button>
+  </fieldset>
+</form>
