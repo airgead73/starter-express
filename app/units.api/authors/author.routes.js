@@ -20,7 +20,7 @@ const populateBooks = {
 // middleware
 const { handleQuery, validationRules, validate  } = require('../../middleware');
 
-// routers
+// routes
 authorRouter.route('/')
   .post(validationRules('createAuthor'), validate, create)
   .get(handleQuery(Author, populateBooks),read)
