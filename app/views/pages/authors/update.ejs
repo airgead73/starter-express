@@ -1,21 +1,21 @@
-<form action="/api/authors/<%=author._id%>?_method=PATCH" method="POST" target="_blank">
+<form action="/api/authors/<%=author._id%>?_method=PATCH" method="POST" target="_blank" id="updateAuthor">
   <fieldset>
     <legend>update <%= author.fname %>
         <%= author.lname %>
     </legend>
     <label for="fname">first name</label>
-    <input type="text" name="fname" id="fname" value="<%= author.fname%>">
+    <input type="text" name="fname" id="fname" form="updateAuthor" value="<%= author.fname%>">
     <label for="lname">last name</label>
-    <input type="text" name="lname" id="lname" value="<%= author.lname%>">
+    <input type="text" name="lname" id="lname" form="updateAuthor" value="<%= author.lname%>">
     <label for="slug">slug</label>
-    <input type="text" name="slug" id="slug" value="<%= author.slug%>">
+    <input type="text" name="slug" id="slug" form="updateAuthor" value="<%= author.slug%>">
     <label for="status">status</label>
-    <input list="statusOptions" name="status" id="status" value="<%= author.status%>">
+    <input list="statusOptions" name="status" id="status" form="updateAuthor" value="<%= author.status%>">
     <datalist id="statusOptions">
       <option value="inactive">inactive</option>
       <option value="active">active</option>
     </datalist>
-    <button type="submit">update</button>
+    <button type="submit" form="updateAuthor">update</button>
   </fieldset>
 
 </form>
