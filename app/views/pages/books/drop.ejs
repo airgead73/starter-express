@@ -1,9 +1,9 @@
-<form action="/api/books?_method=DELETE" method="POST">
+<form action="/api/books?_method=DELETE" method="POST" id="dropBooks">
   <fieldset>
     <legend>book collection</legend>
     <label for="button">
       Are you sure you want to delete <a href="/books">book</a> collection?
     </label>
-    <button type="submit">drop collection</button>
+    <button type="submit" form="dropBooks">drop collection</button>
   </fieldset>
 </form>

@@ -1,17 +1,17 @@
-<form action="/api/authors" method="POST" target="_blank">
+<form action="/api/authors" method="POST" target="_blank" id="addAuthor">
   <fieldset>
     <legend>add author</legend>
     <label for="fname">first name</label>
-    <input type="text" name="fname" id="fname">
+    <input type="text" name="fname" id="fname" form="addAuthor">
     <label for="lname">last name</label>
-    <input type="text" name="lname" id="lname">
+    <input type="text" name="lname" id="lname" form="addAuthor">
     <label for="status">status</label>
-    <input list="statusOptions" name="status" id="status">
+    <input list="statusOptions" name="status" id="status" form="addAuthor">
     <datalist id="statusOptions">
       <option value="inactive">inactive</option>
       <option value="active">active</option>
     </datalist>
-    <button type="submit">add</button>
+    <button type="submit" form="addAuthor">add</button>
   </fieldset>
 
 </form>

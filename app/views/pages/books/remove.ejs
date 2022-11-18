@@ -1,4 +1,4 @@
-<form action="/api/books/<%= book._id %>?_method=DELETE" method="POST" target="_blank">
+<form action="/api/books/<%= book._id %>?_method=DELETE" method="POST" target="_blank" id="deleteBook">
   <fieldset>
     <legend>
       <%= book.title %>
@@ -7,7 +7,7 @@
         <%= book.title %>
       </a>?
     </label>
-    <button type="submit">delete</button>
+    <button type="submit" form="deleteBook">delete</button>
   </fieldset>
 
 </form>

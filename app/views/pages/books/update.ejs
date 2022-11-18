@@ -1,15 +1,15 @@
 <article>
-  <form action="/books/<%=book._id%>?_method=PATCH" method="POST">
+  <form action="/books/<%=book._id%>?_method=PATCH" method="POST" id="updateBook">
     <fieldset>
       <legend>
         <%=book.title%>: update
       </legend>
       <label for="title">title</label>
-      <input type="text" name="title" id="title" value="<%= book.title %>">
+      <input type="text" name="title" id="title" form="updateBook" value="<%= book.title %>">
       <label for="slug">slug</label>
-      <input type="text" name="slug" id="slug" value="<%= book.slug %>">
+      <input type="text" name="slug" id="slug" form="updateBook" value="<%= book.slug %>">
       <label for="author">author</label>
-      <select name="author" id="author">
+      <select name="author" id="author" form="updateBook">
         <option value="book.author_id" selected>
           <%= book.author.fullname %>
             <% authors.forEach(author=> { %>
@@ -19,7 +19,7 @@
         <% }) %>
           </option>
       </select>
-      <button type="submit">update</button>
+      <button type="submit" form="updateBook">update</button>
     </fieldset>
   </form>
 </article>
